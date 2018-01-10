@@ -7,5 +7,5 @@ public interface Tree<T>
   Tree<T> getRight();
   void insert(T object);
   void delete(T object);
-  T search(T object);
+  boolean search(T object);
 }
