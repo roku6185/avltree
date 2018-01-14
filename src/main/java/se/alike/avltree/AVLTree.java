@@ -156,6 +156,7 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
     StringJoiner joiner = new StringJoiner(",");
     if (object != null) joiner.add(object.toString());
     joiner.add("h:" + height);
+    joiner.add("bf:" + getBalanceFactor());
     if (left != null) joiner.add("L:" + left.toString());
     if (right != null) joiner.add("R:" + right.toString());
     return "(" + joiner.toString() + ")";
