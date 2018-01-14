@@ -20,9 +20,7 @@ public class InsertTest extends TestCase
   {
     AVLTree<Integer> tree = new AVLTree<>();
     tree.insert(1);
-    assertEquals(Integer.valueOf(1), tree.getObject());
-    assertNull(tree.getLeft());
-    assertNull(tree.getRight());
+    assertEquals("1", BinaryTreeStringTraversal.inorder(tree));
   }
 
   public void testInsertMultiNodes1()
@@ -31,13 +29,7 @@ public class InsertTest extends TestCase
     tree.insert(2);
     tree.insert(1);
     tree.insert(3);
-    assertEquals(Integer.valueOf(2), tree.getObject());
-    assertEquals(Integer.valueOf(1), tree.getLeft().getObject());
-    assertEquals(Integer.valueOf(3), tree.getRight().getObject());
-    assertNull(tree.getLeft().getLeft());
-    assertNull(tree.getLeft().getRight());
-    assertNull(tree.getRight().getLeft());
-    assertNull(tree.getRight().getRight());
+    assertEquals("1-2-3", BinaryTreeStringTraversal.inorder(tree));
   }
 
   public void testInsertMultiNodes2()
@@ -46,12 +38,6 @@ public class InsertTest extends TestCase
     tree.insert(2);
     tree.insert(3);
     tree.insert(1);
-    assertEquals(Integer.valueOf(2), tree.getObject());
-    assertEquals(Integer.valueOf(1), tree.getLeft().getObject());
-    assertEquals(Integer.valueOf(3), tree.getRight().getObject());
-    assertNull(tree.getLeft().getLeft());
-    assertNull(tree.getLeft().getRight());
-    assertNull(tree.getRight().getLeft());
-    assertNull(tree.getRight().getRight());
+    assertEquals("1-2-3", BinaryTreeStringTraversal.inorder(tree));
   }
 }
