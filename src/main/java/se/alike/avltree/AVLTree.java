@@ -35,12 +35,24 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
     return right;
   }
 
+  public int getHeight()
+  {
+    return height;
+  }
+
+  private int getBalanceFactor()
+  {
+    int leftHeight = getLeft() == null ? 0 : getLeft().height;
+    int rightHeight = getRight() == null ? 0 : getRight().height;
+    return leftHeight - rightHeight;
+  }
+
   @Override
   public void insert(T other)
   {
     if (this.object == null) {
       this.object = other;
-      this.height++;
+      this.height = 1;
     }
     else {
       if (object.compareTo(other) > 0) {
@@ -55,6 +67,11 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
 
         right.insert(other);
       }
+
+      height = 1 + Math.max(
+        left != null ? left.height : 0,
+        right != null ? right.height : 0
+      );
     }
   }
 
@@ -138,6 +155,7 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
   {
     StringJoiner joiner = new StringJoiner(",");
     if (object != null) joiner.add(object.toString());
+    joiner.add("h:" + height);
     if (left != null) joiner.add("L:" + left.toString());
     if (right != null) joiner.add("R:" + right.toString());
     return "(" + joiner.toString() + ")";
