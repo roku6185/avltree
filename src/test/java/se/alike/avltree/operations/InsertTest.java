@@ -23,7 +23,7 @@ public class InsertTest extends TestCase
     assertEquals("1", BinaryTreeStringTraversal.inorder(tree));
   }
 
-  public void testInsertMultiNodes1()
+  public void testInsertBalanced1()
   {
     AVLTree<Integer> tree = new AVLTree<>();
     tree.insert(2);
@@ -32,7 +32,7 @@ public class InsertTest extends TestCase
     assertEquals("1-2-3", BinaryTreeStringTraversal.inorder(tree));
   }
 
-  public void testInsertMultiNodes2()
+  public void testInsertBalanced2()
   {
     AVLTree<Integer> tree = new AVLTree<>();
     tree.insert(2);
