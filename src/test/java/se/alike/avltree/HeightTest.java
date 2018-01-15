@@ -61,17 +61,4 @@ public class HeightTest extends TestCase
     assertEquals(2, tree.getRight().getHeight());
     assertEquals(1, tree.getRight().getRight().getHeight());
   }
-
-  public void testHeight4()
-  {
-    AVLTree<Integer> tree = new AVLTree<>();
-    tree.insert(1);
-    tree.insert(2);
-    tree.insert(3);
-    tree.insert(4);
-    assertEquals(4, tree.getHeight());
-    assertEquals(3, tree.getRight().getHeight());
-    assertEquals(2, tree.getRight().getRight().getHeight());
-    assertEquals(1, tree.getRight().getRight().getRight().getHeight());
-  }
 }

@@ -19,9 +19,9 @@ public class TraversalPostorderTest extends TestCase
   public void testPostorderSimple1()
   {
     AVLTree<Integer> tree = new AVLTree<>();
-    tree.insert(1);
     tree.insert(2);
+    tree.insert(1);
     tree.insert(3);
-    assertEquals("3-2-1", BinaryTreeStringTraversal.postorder(tree));
+    assertEquals("1-3-2", BinaryTreeStringTraversal.postorder(tree));
   }
 }

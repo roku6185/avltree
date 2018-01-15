@@ -50,11 +50,13 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
   @Override
   public void insert(T other)
   {
+    // Insert node as leaf
     if (this.object == null) {
       this.object = other;
       this.height = 1;
     }
     else {
+      // Search in correct subtree
       if (object.compareTo(other) > 0) {
         if (left == null)
           left = new AVLTree<T>();
@@ -68,11 +70,93 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
         right.insert(other);
       }
 
+      // Adjust height
       height = 1 + Math.max(
         left != null ? left.height : 0,
         right != null ? right.height : 0
       );
+
+      // Rebalance right heavy tree?
+      if (getBalanceFactor() < -1) {
+        if (right != null && right.getBalanceFactor() > 1) {
+          // TODO
+        }
+        else {
+          rotateLeft();
+        }
+      }
+      // Rebalance left heavy tree?
+      else if (getBalanceFactor() > 1) {
+        if (left != null && left.getBalanceFactor() < -1) {
+          // TODO
+        }
+        else {
+          rotateRight();
+        }
+      }
     }
+  }
+
+  /* Left rotation:
+   *
+   *    1              2
+   *   / \            / \
+   *  a   2    =>    1   3
+   *     / \        / \
+   *    b   3      a   b
+   *
+   */
+  private void rotateLeft()
+  {
+    // Create new left subtree
+    AVLTree<T> tmp = new AVLTree<T>();
+    tmp.object = object;
+    tmp.left = left;
+    tmp.right = right != null ? right.left : null;
+    tmp.height = 1 + Math.max(
+      tmp.left != null ? tmp.left.height : 0,
+      tmp.right != null ? tmp.right.height : 0
+    );
+
+    // Update root node
+    object = right.object;
+    left = tmp;
+    right = right.right;
+    height = 1 + Math.max(
+      left != null ? left.height : 0,
+      right != null ? right.height : 0
+    );
+  }
+
+  /* Right rotation:
+   *
+   *      3          2
+   *     / \        / \
+   *    2   a  =>  1   3
+   *   / \            / \
+   *  1   b          b   a
+   *
+   */
+  private void rotateRight()
+  {
+    // Create new right subtree
+    AVLTree<T> tmp = new AVLTree<T>();
+    tmp.object = object;
+    tmp.left = left != null ? left.right : null;
+    tmp.right = right;
+    tmp.height = 1 + Math.max(
+      tmp.left != null ? tmp.left.height : 0,
+      tmp.right != null ? tmp.right.height : 0
+    );
+
+    // Update root node
+    object = left.object;
+    left = left.left;
+    right = tmp;
+    height = 1 + Math.max(
+      left != null ? left.height : 0,
+      right != null ? right.height : 0
+    );
   }
 
   @Override
