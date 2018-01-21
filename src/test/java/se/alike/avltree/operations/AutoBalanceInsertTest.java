@@ -35,4 +35,24 @@ public class AutoBalanceInsertTest extends TestCase
     assertEquals("1-2-3", BinaryTreeStringTraversal.inorder(tree));
     assertEquals(2, tree.getHeight());
   }
+
+  public void testLeftRightHeavyTree1()
+  {
+    AVLTree<Integer> tree = new AVLTree<>();
+    tree.insert(3);
+    tree.insert(1);
+    tree.insert(2);
+    assertEquals("1-2-3", BinaryTreeStringTraversal.inorder(tree));
+    assertEquals(2, tree.getHeight());
+  }
+
+  public void testRightLeftHeavyTree1()
+  {
+    AVLTree<Integer> tree = new AVLTree<>();
+    tree.insert(1);
+    tree.insert(3);
+    tree.insert(2);
+    assertEquals("1-2-3", BinaryTreeStringTraversal.inorder(tree));
+    assertEquals(2, tree.getHeight());
+  }
 }

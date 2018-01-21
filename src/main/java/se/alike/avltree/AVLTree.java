@@ -80,8 +80,9 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
 
       // Rebalance right heavy tree?
       if (getBalanceFactor() < -1) {
-        if (right != null && right.getBalanceFactor() > 1) {
-          // TODO
+        if (right != null && right.getBalanceFactor() >= 1) {
+          right.rotateRight();
+          rotateLeft();
         }
         else {
           rotateLeft();
@@ -89,8 +90,9 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
       }
       // Rebalance left heavy tree?
       else if (getBalanceFactor() > 1) {
-        if (left != null && left.getBalanceFactor() < -1) {
-          // TODO
+        if (left != null && left.getBalanceFactor() <= -1) {
+          left.rotateLeft();
+          rotateRight();
         }
         else {
           rotateRight();
