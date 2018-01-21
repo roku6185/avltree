@@ -62,12 +62,14 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
           left = new AVLTree<T>();
 
         left.insert(other);
+        height++;
       }
       else {
         if (right == null)
           right = new AVLTree<T>();
 
         right.insert(other);
+        height++;
       }
 
       // Adjust height
