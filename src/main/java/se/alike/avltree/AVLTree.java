@@ -51,9 +51,9 @@ public class AVLTree<T extends Comparable<? super T>> implements BinaryTree<T>
   public void insert(T other)
   {
     // Insert node as leaf
-    if (this.object == null) {
-      this.object = other;
-      this.height = 1;
+    if (object == null) {
+      object = other;
+      height = 1;
     }
     else {
       // Search in correct subtree
